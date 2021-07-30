@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const app = express();
 const path = require("path");
-// const cors = require("cors");
+const cors = require("cors");
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -11,11 +11,11 @@ app.use(express.json());
 connectDB();
 
 //cors
-// const corsOption = {
-//   origin: process.env.ALLOWED_CLIENT.split(","),
-//   //['localhost://3000', 'localhost://3001' ]
-// };
-// app.use(cors(corsOption));
+const corsOption = {
+  origin: process.env.ALLOWED_CLIENT.split(","),
+  //['localhost://3000', 'localhost://3001' ]
+};
+app.use(cors(corsOption));
 
 // template engine
 app.set("views", path.join(__dirname, "views"));
